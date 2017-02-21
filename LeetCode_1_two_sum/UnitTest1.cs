@@ -18,10 +18,10 @@ namespace LeetCode_1_two_sum
         [TestMethod]
         public void Test_nums_is_1_2_4_and_target_is_5_should_return_0_2()
         {
-            var nums = new int[] {1, 2, 4};
+            var nums = new int[] { 1, 2, 4 };
             var actual = TwoSum(nums, 5);
 
-            var expected = new int[] {0, 2};
+            var expected = new int[] { 0, 2 };
             ShouldEqual(expected, actual);
         }
 
@@ -41,6 +41,16 @@ namespace LeetCode_1_two_sum
     {
         public int[] TwoSum(int[] nums, int target)
         {
+            for (int i = 0; i < nums.Length; i++)
+            {
+                for (int j = i + 1; j < nums.Length; j++)
+                {
+                    if (nums[i] + nums[j] == target)
+                    {
+                        return new int[] { i, j };
+                    }
+                }
+            }
             return new int[] { 0, 1 };
         }
     }
