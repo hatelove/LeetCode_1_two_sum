@@ -1,5 +1,6 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Linq;
 
 namespace LeetCode_1_two_sum
 {
@@ -52,18 +53,28 @@ namespace LeetCode_1_two_sum
     {
         public int[] TwoSum(int[] nums, int target)
         {
-            for (int i = 0; i < nums.Length; i++)
+            var sorted = nums
+                .Select((x, index) => Tuple.Create(x, index))
+                .OrderBy(x => x.Item1).ToArray();
+
+            for (int i = 0; i < sorted.Length; i++)
             {
-                for (int j = i + 1; j < nums.Length; j++)
+                for (int j = i + 1; j < sorted.Length; j++)
                 {
-                    if (nums[i] + nums[j] == target)
+                    var twoSum = sorted[i].Item1 + sorted[j].Item1;
+                    if (twoSum == target)
                     {
-                        return new int[] { i, j };
+                        return new int[] { Math.Min(sorted[i].Item2, sorted[j].Item2), Math.Max(sorted[i].Item2, sorted[j].Item2) };                        
+                    }
+
+                    if (twoSum > target)
+                    {
+                        break;
                     }
                 }
             }
-            
-            throw new Exception();
+
+            return null;
         }
     }
 }
