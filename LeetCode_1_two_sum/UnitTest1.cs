@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LeetCode_1_two_sum
 {
@@ -61,7 +62,8 @@ namespace LeetCode_1_two_sum
                     }
                 }
             }
-            return new int[] { 0, 1 };
+            
+            throw new Exception();
         }
     }
 }
