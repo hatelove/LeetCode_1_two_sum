@@ -15,6 +15,16 @@ namespace LeetCode_1_two_sum
             ShouldEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void Test_nums_is_1_2_4_and_target_is_5_should_return_0_2()
+        {
+            var nums = new int[] {1, 2, 4};
+            var actual = TwoSum(nums, 5);
+
+            var expected = new int[] {0, 2};
+            ShouldEqual(expected, actual);
+        }
+
         private static int[] TwoSum(int[] nums, int target)
         {
             var actual = new Solution().TwoSum(nums, target);
