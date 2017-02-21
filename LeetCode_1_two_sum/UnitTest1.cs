@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LeetCode_1_two_sum
 {
@@ -9,14 +8,21 @@ namespace LeetCode_1_two_sum
         [TestMethod]
         public void Test_nums_is_1_8_and_target_is_9_should_return_0_1()
         {
-            var sut = new Solution();
             var nums = new int[] { 1, 8 };
-            var target = 9;
+            var actual = TwoSum(nums, 9);
 
             var expected = new int[] { 0, 1 };
+            ShouldEqual(expected, actual);
+        }
 
-            var actual = sut.TwoSum(nums, target);
+        private static int[] TwoSum(int[] nums, int target)
+        {
+            var actual = new Solution().TwoSum(nums, target);
+            return actual;
+        }
 
+        private static void ShouldEqual(int[] expected, int[] actual)
+        {
             CollectionAssert.AreEqual(expected, actual);
         }
     }
