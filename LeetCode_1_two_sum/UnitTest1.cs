@@ -57,20 +57,21 @@ namespace LeetCode_1_two_sum
                 .Select((x, index) => Tuple.Create(x, index))
                 .OrderBy(x => x.Item1).ToArray();
 
-            for (int i = 0; i < sorted.Length; i++)
+            var start = 0;
+            var end = sorted.Length - 1;
+            while (start < end)
             {
-                for (int j = i + 1; j < sorted.Length; j++)
+                if (sorted[start].Item1 + sorted[end].Item1 == target)
                 {
-                    var twoSum = sorted[i].Item1 + sorted[j].Item1;
-                    if (twoSum == target)
-                    {
-                        return new int[] { Math.Min(sorted[i].Item2, sorted[j].Item2), Math.Max(sorted[i].Item2, sorted[j].Item2) };                        
-                    }
-
-                    if (twoSum > target)
-                    {
-                        break;
-                    }
+                    return new int[] { Math.Min(sorted[start].Item2, sorted[end].Item2), Math.Max(sorted[start].Item2, sorted[end].Item2) };
+                }
+                else if (sorted[start].Item1 + sorted[end].Item1 < target)
+                {
+                    start++;
+                }
+                else
+                {
+                    end--;
                 }
             }
 
