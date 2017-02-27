@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace LeetCode_1_two_sum
 {
@@ -53,25 +52,17 @@ namespace LeetCode_1_two_sum
     {
         public int[] TwoSum(int[] nums, int target)
         {
-            var sorted = nums
-                .Select((x, index) => Tuple.Create(x, index))
-                .OrderBy(x => x.Item1).ToArray();
-
-            var start = 0;
-            var end = sorted.Length - 1;
-            while (start < end)
+            var dictionary = new Dictionary<int, int>();
+            for (int i = 0; i < nums.Length; i++)
             {
-                if (sorted[start].Item1 + sorted[end].Item1 == target)
+                var key = target - nums[i];
+                if (dictionary.ContainsKey(key) && dictionary[key] != i)
                 {
-                    return new int[] { Math.Min(sorted[start].Item2, sorted[end].Item2), Math.Max(sorted[start].Item2, sorted[end].Item2) };
+                    return new int[] { dictionary[key], i };
                 }
-                else if (sorted[start].Item1 + sorted[end].Item1 < target)
+                else if (!dictionary.ContainsKey(nums[i]))
                 {
-                    start++;
-                }
-                else
-                {
-                    end--;
+                    dictionary.Add(nums[i], i);
                 }
             }
 
