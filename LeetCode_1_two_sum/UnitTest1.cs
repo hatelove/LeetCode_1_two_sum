@@ -56,7 +56,7 @@ namespace LeetCode_1_two_sum
             for (int i = 0; i < nums.Length; i++)
             {
                 var key = target - nums[i];
-                if (dictionary.ContainsKey(key) && dictionary[key] != i)
+                if (dictionary.ContainsKey(key))
                 {
                     return new int[] { dictionary[key], i };
                 }
